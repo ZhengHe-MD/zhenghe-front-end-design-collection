@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css-wheel</title>
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0px;
+      background-color: #EAEAEA;
+    }
+
+    #wrapper {
+      margin: 40px auto;
+      width: 266px;
+    }
+
+    #wheel {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      position: relative;
+      border: 8px solid #fff;
+      overflow: hidden;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    }
+
+    #wheel:before {
+      content:'';
+      position:absolute;
+      border:4px solid rgba(0,0,0,0.1);
+      width:242px;
+      height:242px;
+      border-radius:50%;
+      z-index:1000;
+    }
+
+    #inner-wheel {
+      width: 100%;
+      height: 100%;
+
+      transition: all 6s cubic-bezier(0,.99,.44,.99);
+      animation: spin 6s infinite;
+      animation-timing-function: linear;
+    }
+
+    #wheel div.sec {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 130px 75px 0;
+      border-color: #19c transparent;
+      transform-origin: 75px 129px;
+      left:50px;
+      top:-4px;
+      opacity:1;
+    }
+
+    #wheel div.sec:nth-child(1) {
+      transform: rotate(60deg);
+      border-color: #16a085 transparent;
+    }
+
+    #wheel div.sec:nth-child(2) {
+      transform: rotate(120deg);
+      border-color: #2980b9 transparent;
+    }
+
+    #wheel div.sec:nth-child(3) {
+      transform: rotate(180deg);
+      border-color: #34495e transparent;
+    }
+
+    #wheel div.sec:nth-child(4) {
+      transform: rotate(240deg);
+      border-color: #f39c12 transparent;
+    }
+
+    #wheel div.sec:nth-child(5) {
+      transform: rotate(300deg);
+      border-color: #d35400 transparent;
+    }
+
+    #wheel div.sec:nth-child(6){
+      transform: rotate(360deg);
+      border-color: #c0392b transparent;
+    }
+
+    #wheel div.sec .fa {
+      margin-top: -100px;
+      color: rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 10000000;
+      display: block;
+      text-align: center;
+      font-size:36px;
+      margin-left:-15px;
+
+      text-shadow: rgba(255, 255, 255, 0.1) 0px -1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="wheel">
+      <div id="inner-wheel">
+        <div class="sec"><span class="fa fa-bell-o"></span></div>
+        <div class="sec"><span class="fa fa-comment-o"></span></div>
+        <div class="sec"><span class="fa fa-smile-o"></span></div>
+        <div class="sec"><span class="fa fa-heart-o"></span></div>
+        <div class="sec"><span class="fa fa-star-o"></span></div>
+        <div class="sec"><span class="fa fa-lightbulb-o"></span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

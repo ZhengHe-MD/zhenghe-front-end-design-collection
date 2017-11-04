@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typer Effect</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+    }
+
+    #typer {
+      font-size: 25px;
+    }
+
+    #typer::after {
+      content: "|";
+      animation: blink 1000ms infinite;
+    }
+
+    @keyframes blink {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="typer"></div>
+  <script type="application/javascript">
+    modes = {
+      UNIFORM: "UNIFORM",
+      BY_WORD: "BY_WORD"
+    }
+
+    var textToType = "hello world, check this typer effect!";
+    var target = document.getElementById("typer");
+
+    function doTyping(textToType, target, typeMode) {
+      switch (typeMode) {
+        case modes.UNIFORM:
+          doUniformTyping(textToType, target);
+          break
+        case modes.BY_WORD:
+          doTypingByWord(textToType, target);
+          break
+        default:
+          doUniformTyping(textToType, target);
+      }
+    }
+
+    function doUniformTyping(textToType, target) {
+      for (var i = 0; i < textToType.length; i++) {
+        setTimeout(function(charToType) {
+          target.innerText = target.innerText + charToType;
+        }, 250*i, textToType.charAt(i))
+      }
+    }
+
+    function doTypingByWord(textToType, target) {
+      wordCount = 0;
+      for (var i = 0; i < textToType.length; i++) {
+        charCount = i;
+        if (textToType.charAt(i) ===  " ") {
+          wordCount += 1;
+        }
+
+        setTimeout(function(charToType) {
+          target.innerText = target.innerText + charToType;
+        }, wordCount*150 + charCount*100, textToType.charAt(i))
+      }
+    }
+
+    doTyping(textToType, target, modes.BY_WORD);
+  </script>
+</body>
+</html>
